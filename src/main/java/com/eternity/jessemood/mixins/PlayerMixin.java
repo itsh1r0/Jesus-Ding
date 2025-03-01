@@ -16,7 +16,6 @@ public abstract class PlayerMixin {
         // com.eternity.jessemood.client.guihandler.triggerDisplay(); // Set the display flag
         LocalPlayer player = (LocalPlayer) (Object) this;
         if (player.isAlive() && player.getHealth() = 2 && !player.isCreative()) {
-            System.out.println("Player is low on health!");
             com.eternity.jessemood.client.guihandler.triggerDisplay(); // Set the display flag
         }
     }
