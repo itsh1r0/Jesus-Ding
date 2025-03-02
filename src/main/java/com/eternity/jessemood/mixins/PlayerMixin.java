@@ -1,22 +1,26 @@
 package com.eternity.jessemood.mixins;
 
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(LocalPlayer.class)
+@OnlyIn(Dist.CLIENT)
+@Mixin(LivingEntity.class)
 public abstract class PlayerMixin {
 
-    @Inject(method = "hurt", at = @At("HEAD"))
-    public void onHurt(DamageSource source, float amount, CallbackInfoReturnable<Boolean> ci) {
-        // System.out.println("Player was hurt!");
-        // com.eternity.jessemood.client.guihandler.triggerDisplay(); // Set the display flag
-        LocalPlayer player = (LocalPlayer) (Object) this;
-        if (player.isAlive() && player.getHealth() == 2 && (!player.isCreative() && !player.isSpectator())) {
-            com.eternity.jessemood.client.guihandler.triggerDisplay(); // Set the display flag
+    @Inject(method = "setHealth", at = @At("TAIL"))
+    public void onHurt(float HP, CallbackInfo ci) {
+        LivingEntity entity = (LivingEntity) (Object) this;
+        if (entity instanceof LocalPlayer player) {
+            float stabilizeHP = Mth.clamp(HP, 0.0F, player.getMaxHealth());
+            if (stabilizeHP > 0 && stabilizeHP <= 1)
+                com.eternity.jessemood.client.guihandler.triggerDisplay(); // Set the display flag
         }
     }
 }

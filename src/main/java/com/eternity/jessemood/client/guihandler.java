@@ -6,18 +6,18 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class guihandler {
 
     private static final int NUMBEROFIMAGES = 10;
-    private static final int DISPLAY_DURATION = 500;
+    private static final int DISPLAY_DURATION = 400;
     private static long startTime = -1;
     private static boolean shouldDisplay = false;
 
@@ -42,7 +42,7 @@ public class guihandler {
         // System.out.println("attempting to display...");
         Minecraft mc = Minecraft.getInstance();
         if (mc.level != null && mc.player != null) {
-            if (startTime == -1 || System.currentTimeMillis() - startTime > DISPLAY_DURATION * 2) {
+            if (startTime == -1 || System.currentTimeMillis() - startTime > DISPLAY_DURATION) {
                 if (!images.isEmpty()) {
                     image_id = images.get(new Random().nextInt(images.size()));
                 } else {
