@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "com.eternity.jessemood.mixins",
-  "refmap": "eternaljesus.refmap.json",
+  "refmap": "eternal_jesus.refmap.json",
   "mixins": [
   ],
   "client": ["PlayerMixin"],

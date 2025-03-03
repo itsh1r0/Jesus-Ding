@@ -14,7 +14,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 @Mod(Jessemood.MODID)
 public class Jessemood {
-    public static final String MODID = "eternaljesus";
+    public static final String MODID = "eternal_jesus";
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, MODID);
     public static final RegistryObject<SoundEvent> JESUS_BELL_SOUND = registerSoundEvents("jesus_bell");
 
