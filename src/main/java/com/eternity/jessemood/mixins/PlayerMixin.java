@@ -25,7 +25,7 @@ public abstract class PlayerMixin {
             float stabilizeHP = Mth.clamp(HP, 0.0F, player.getMaxHealth());
             if (stabilizeHP >= jesus_Ding$lastHP) {
                 jesus_Ding$lastHP = stabilizeHP;
-                    return;
+                return;
             }
             jesus_Ding$lastHP = stabilizeHP;
             if (stabilizeHP > 0 && stabilizeHP <= 1)
